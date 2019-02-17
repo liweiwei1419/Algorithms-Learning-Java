@@ -33,7 +33,7 @@ public class BST {
         }
     }
 
-    // 节根点
+    // 根结点
     private Node root;
 
     // 二分搜索树中的节点个数
@@ -234,7 +234,9 @@ public class BST {
     }
 
 
-    // 二分搜索树的后序遍历
+    /**
+     * 二分搜索树的后序遍历
+     */
     public void postOrder() {
         postOrder(root);
     }
@@ -244,7 +246,6 @@ public class BST {
             postOrder(node.left);
             postOrder(node.right);
             System.out.println(node.value);
-
         }
     }
 
@@ -336,7 +337,8 @@ public class BST {
         if (node.left == null) {
             // 就是删除这个节点
             Node rightNode = node.right;
-            node.right = null; // 因为左边已经是空了，再把右边释放掉
+            // 因为左边已经是空了，要把右边释放掉
+            node.right = null;
             count--;
             return rightNode;
 

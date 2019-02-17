@@ -15,8 +15,10 @@ public class BinarySearch {
      */
     public static int binarySearch(int[] arr, int target) {
         int left = 0;
-        int right = arr.length - 1; // 我们的定义是在 [0,arr.length-1]，左闭右闭的区间里查找目标元素
-        while (left <= right) {// 注意：这里是等于号，当 left == right 的时候，数组还有元素，还可以执行查找操作
+        // 我们的定义是在 [0, arr.length-1]，左闭右闭的区间里查找目标元素
+        int right = arr.length - 1;
+        // 注意：这里是等于号，当 left == right 的时候，数组还有元素，还可以执行查找操作
+        while (left <= right) {
             int mid = left + (right - left) / 2;
             if (target == arr[mid]) {
                 return mid;
@@ -38,8 +40,10 @@ public class BinarySearch {
      * @param args
      */
     public static void main(String[] args) {
-        int N = 100000; // 有序数组的元素个数
-        int M = 100; // 测试用例的规模。即我要查找多少次
+        // 有序数组的元素个数
+        int N = 100000;
+        // 测试用例的规模。即我要查找多少次
+        int M = 100;
         int[] sortedArr = new int[N];
         for (int i = 0; i < N; i++) {
             sortedArr[i] = i;

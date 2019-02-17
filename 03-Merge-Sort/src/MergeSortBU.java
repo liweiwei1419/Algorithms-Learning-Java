@@ -20,7 +20,7 @@ public class MergeSortBU implements ISortAlgorithm {
         int len = arr.length;
         // sz = 1, 2, 4, 8
         for (int sz = 1; sz < len; sz *= 2) {
-            // left = 0,2,4,6
+            // left = 0, 2, 4, 6
             for (int left = 0; left < len - sz; left += 2 * sz) {
                 mergeOfTwoSortArray(arr, left, left + sz - 1, Integer.min(left + sz + sz - 1, len - 1));
             }

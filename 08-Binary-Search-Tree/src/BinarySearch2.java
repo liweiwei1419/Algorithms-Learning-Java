@@ -5,12 +5,15 @@
 public class BinarySearch2 {
 
     private static int binarySearch(int[] arr, int target) {
-        int left = 0;  // 左边界
-        int right = arr.length - 1; // 右边界
+        // 左边界
+        int left = 0;
+        // 右边界
+        int right = arr.length - 1;
         int mid;
         // 通过 while 循环不断缩减搜索的区间端点，一次可以排除一大半
         while (left <= right) {
-            mid = left + (right - left) / 2; // mid = (left + right) / 2;
+            // mid = (left + right) / 2
+            mid = left + (right - left) / 2; ;
 
             if (target == arr[mid]) {
                 return mid;
@@ -20,7 +23,8 @@ public class BinarySearch2 {
                 left = mid + 1;
             }
         }
-        return -1; // 不能形成区间的时候，说明没有找到，返回 -1 就好了
+        // 不能形成区间的时候，说明没有找到，返回 -1 就好了
+        return -1;
     }
 
     public static void main(String[] args) {
