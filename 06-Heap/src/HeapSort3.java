@@ -9,6 +9,7 @@ public class HeapSort3 implements ISortAlgorithm {
         return "原地堆排序";
     }
 
+
     /**
      * 原地堆排序的目标就是，不再借助 MaxHeap3 这个数据结构进行排序，减少了空间复杂度
      * 注意：此时我们的数组索引从 0 开始定义(自己在纸上画一下图，就能清晰地明白算法实现的含义)
@@ -18,7 +19,7 @@ public class HeapSort3 implements ISortAlgorithm {
     @Override
     public void sort(int[] arr) {
         int length = arr.length;
-        // 将一个无序的数组组成了一个最大堆，第 1 个元素就是最大值
+        // 首先 heapify：将一个无序的数组组成了一个最大堆，第 1 个元素就是最大值
         for (int i = (length - 1) / 2; i >= 0; i--) {
             shiftDown(arr, length, i);
         }
@@ -31,6 +32,9 @@ public class HeapSort3 implements ISortAlgorithm {
 
     /**
      * 从索引为 begin 开始，end 为止 [begin,end] 的数组元素进行 shift down 的操作
+     * 注意 shiftDown 不能复用我们上面写的，而设计成
+     * 对 0 开始，begin 为止，即将 arr 中 [0,begin] 部分的数组元素视为"最大堆"
+     * 对索引为 end 的元素进行 shift down 的操作
      *
      * @param arr
      * @param begin
@@ -47,7 +51,8 @@ public class HeapSort3 implements ISortAlgorithm {
             }
             if (arr[end] < arr[k]) {
                 swap(arr, end, k);
-                end = k; // 留意
+                // 留意
+                end = k;
             } else {
                 break;
             }

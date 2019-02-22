@@ -237,7 +237,7 @@ public class IndexMaxHeap1<T extends Comparable> {
         System.out.println(Arrays.toString(reverse));
     }
 
-    // 测试 IndexMaxHeap
+    // 测试 IndexMaxHeap4
     public static void main(String[] args) {
         /*int N = 10;
         IndexMaxHeap1<Integer> indexMaxHeap = new IndexMaxHeap1<>(N);
