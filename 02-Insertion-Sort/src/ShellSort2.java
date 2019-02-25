@@ -33,7 +33,6 @@ public class ShellSort2 {
     }
 
     public static void main(String[] args) {
-        // write your code here
         int[] nums = {8, 4, 3, 6, 5, 1};
         ShellSort2 shellSort2 = new ShellSort2();
         shellSort2.sort(nums);

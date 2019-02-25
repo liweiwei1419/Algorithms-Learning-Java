@@ -1,9 +1,8 @@
-
 import java.util.Arrays;
 
 /**
- * 跟着老师的代码实现的最大索引堆，这是第 1 版的最大索引堆，在 change() 这个方法的时候效率并不高
- * 使用了泛型
+ * 使用了泛型的最大索引堆，
+ * 在 change() 这个方法里使用了反向查找技术
  * Created by liwei on 17/6/9.
  */
 public class IndexMaxHeap1<T extends Comparable> {
@@ -11,26 +10,16 @@ public class IndexMaxHeap1<T extends Comparable> {
      * 最大索引堆中的数据
      */
     private T[] data;
-    /**
-     * 最大索引堆中的索引
-     * 【特别注意】：索引构成的数据结构，依次排列出来是一个堆
-     * indexes[1] = 10 表示 data[10] 在索引堆中的位置是 1
-     * indexes[x] = i ，表示索引 i 的元素在堆中的位置是 x
-     */
+
     private int[] indexes;
-    /**
-     * 最大索引堆的反向索引
-     * 找 indexes[] 中原来索引是 i 的元素的位置
-     * reverse[i] = j 表示 data[i] 在索引堆中的位置是 j
-     * <p>
-     * reverse[i] = j 表示 indexes[] 中值为 i 的元素在原数组中的索引是 j
-     */
     private int[] reverse;
+
     private int count;
     private int capacity;
 
+
     /**
-     * 我们还是采取了索引从 1 开始的索引最大堆
+     * 底层数据数组、索引数组、反向查找数组从 1 号索引开始使用
      *
      * @param capacity
      */
@@ -38,9 +27,6 @@ public class IndexMaxHeap1<T extends Comparable> {
         data = (T[]) new Comparable[capacity + 1];
         indexes = new int[capacity + 1];
         reverse = new int[capacity + 1];
-        // 为 reverse[] 数组赋初始值
-        // 为 reverse[] 数组赋初始值
-        // 为 reverse[] 数组赋初始值，0 有特殊的含义：reverse[i]=0 表示 indexes 中值为 i 的元素不存在了
         for (int i = 0; i <= capacity; i++) {
             reverse[i] = 0;
         }
@@ -48,18 +34,19 @@ public class IndexMaxHeap1<T extends Comparable> {
         this.capacity = capacity;
     }
 
+
     public int size() {
         return count;
     }
+
 
     public boolean isEmpty() {
         return count == 0;
     }
 
+
     /**
-     * 向最大索引堆中插入一个元素
-     * 新元素的索引为 i，元素为 t
-     * 【特别注意】：这里的 insert 虽然指定了索引，但是一定是在 data 数组的最后添加数据
+     *
      *
      * @param i
      * @param t
@@ -69,9 +56,8 @@ public class IndexMaxHeap1<T extends Comparable> {
         assert i >= 1 && i <= capacity - 1;
         i++;
         data[i] = t;
-        // 这一步很关键
-        // 这一步很关键
-        // 这一步很关键
+
+        // 索引数组和反向查找数组得同步更新
         indexes[count + 1] = i;
         reverse[i] = count + 1;
 
@@ -79,9 +65,11 @@ public class IndexMaxHeap1<T extends Comparable> {
         shiftUp(count);
     }
 
+
     private void shiftUp(int h) {
         while (h > 1) {
             if (data[indexes[h / 2]].compareTo(data[indexes[h]]) < 0) {
+                // 索引数组交换的同时，反向查找数组也要同时交换
                 swapIndexes(indexes, h / 2, h);
                 h /= 2;
             } else {
@@ -89,6 +77,7 @@ public class IndexMaxHeap1<T extends Comparable> {
             }
         }
     }
+
 
     private void swapIndexes(int[] indexes, int i, int j) {
         if (i == j) {
@@ -114,6 +103,7 @@ public class IndexMaxHeap1<T extends Comparable> {
 
     }
 
+
     /**
      * @param h
      */
@@ -132,6 +122,7 @@ public class IndexMaxHeap1<T extends Comparable> {
         }
     }
 
+
     /**
      * 获取最大索引堆中索引为 i 的元素
      *
@@ -143,6 +134,7 @@ public class IndexMaxHeap1<T extends Comparable> {
         return data[i + 1];
     }
 
+
     /**
      * 将最大索引堆中索引为 i 的元素修改为 t
      *
@@ -150,12 +142,12 @@ public class IndexMaxHeap1<T extends Comparable> {
      * @param t
      */
     public void change(int i, T t) {
-
         assert contain(i);
 
         i++;
         data[i] = t;
         // 找到 index[j] = i 中的 j，尝试将 j shiftUp 和 shiftDown
+        // 使用了反向查找技术，就不用遍历索引数组了
         /*for(int j=1;i<=count;j++){
             if(indexes[j] == i){
                 shiftDown(j);
@@ -183,6 +175,7 @@ public class IndexMaxHeap1<T extends Comparable> {
         return reverse[i + 1] == 0;
     }
 
+
     /**
      * 测试最大索引堆的方法
      */
@@ -198,14 +191,12 @@ public class IndexMaxHeap1<T extends Comparable> {
             copyReverse[i] = reverse[i];
         }
 
-
         System.out.println("数据堆" + Arrays.toString(data));
         System.out.println("索引堆" + Arrays.toString(copyIndex));
         System.out.println("反向索引堆" + Arrays.toString(copyIndex));
         Arrays.sort(copyIndex);
 
         System.out.println("排序以后的索引堆" + Arrays.toString(copyIndex));
-
 
         boolean res = true;
         for (int i = 1; i <= count; i++) {
@@ -219,25 +210,24 @@ public class IndexMaxHeap1<T extends Comparable> {
             System.out.println("error");
             return false;
         }
-
         return true;
     }
 
 
     public void showIndexes() {
-
         System.out.printf("最大索引堆中的数据结构");
         System.out.println(Arrays.toString(data));
-
         System.out.printf("最大索引堆内部的索引堆的数据结构");
         System.out.println(Arrays.toString(indexes));
-
-
         System.out.printf("最大索引堆中反向索引堆中的数据结构");
         System.out.println(Arrays.toString(reverse));
     }
 
-    // 测试 IndexMaxHeap4
+
+    /**
+     * 测试 IndexMaxHeap4
+     * @param args
+     */
     public static void main(String[] args) {
         /*int N = 10;
         IndexMaxHeap1<Integer> indexMaxHeap = new IndexMaxHeap1<>(N);
@@ -271,9 +261,5 @@ public class IndexMaxHeap1<T extends Comparable> {
             int element = indexMaxHeap.getItem(maxIndex);
             System.out.printf("%d,", element);
         }
-
-
-
-
     }
 }

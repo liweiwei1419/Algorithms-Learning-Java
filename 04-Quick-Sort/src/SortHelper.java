@@ -5,10 +5,11 @@ public class SortHelper {
 
     public static Random random = new Random(System.currentTimeMillis());
 
+
     /**
      * 判断给定的数组是不是已经排好序的数组
-     * // TODO: 18/5/18  对于只有交换元素位置的排序算法来说，这个测试方法是可用的
-     * // 不过对于一些引入额外空间赋值操作的排序算法来说，这个检测方法就不行了
+     * 对于只有交换元素位置的排序算法来说，这个测试方法是可用的
+     * 不过对于一些引入额外空间赋值操作的排序算法来说，这个检测方法就不行了
      *
      * @param arr
      */
@@ -22,6 +23,7 @@ public class SortHelper {
         System.out.println("数组已经是排好序的。");
     }
 
+
     public static void checkSorted1(int[] originArr, int[] yourSortedArr) {
         int len = originArr.length;
         if (len != yourSortedArr.length) {
@@ -32,7 +34,6 @@ public class SortHelper {
             if (originArr[i] != yourSortedArr[i]) {
                 throw new RuntimeException("数组不是排好序的。");
             }
-
         }
         System.out.println("数组已经是排好序的。");
     }

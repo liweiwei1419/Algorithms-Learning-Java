@@ -14,6 +14,7 @@ public class QuickSort3 {
     // [left+1,l] 是小于 p 的部分
     // [l+1, i) 是等于 p 的部分
     // [r,right] 是大于 p 的部分
+
     private void quickSort(int[] arr, int left, int right) {
         if (right - left <= 15) {
             insertSort(arr, left, right);
@@ -42,6 +43,7 @@ public class QuickSort3 {
         quickSort(arr, r, right);
     }
 
+
     private void insertSort(int[] arr, int left, int right) {
         // 第 1 遍不用插入，所以是总长度减去 1
         for (int i = left + 1; i <= right; i++) {
@@ -59,6 +61,7 @@ public class QuickSort3 {
         }
     }
 
+
     private void swap(int[] data, int index1, int index2) {
         if (index1 == index2) {
             return;
@@ -67,6 +70,7 @@ public class QuickSort3 {
         data[index1] = data[index2];
         data[index2] = temp;
     }
+
 
     public static void main(String[] args) {
         int[] nums = new int[]{3, 4, 6, 2, 1, 8, 5, 7, 10, 9, 12, 200};

@@ -12,7 +12,8 @@ public class InsertSort2 {
         System.out.println("原始数组：" + Arrays.toString(arr));
         // 插入排序算法的一个小优化，把逐个向前移动变成了多次赋值
         int len = arr.length;
-        for (int i = 1; i < len; i++) { // 第 1 轮的时候，第 1 个数可以认为是排好序的
+        // 第 1 轮的时候，第 1 个数可以认为是排好序的
+        for (int i = 1; i < len; i++) {
             int temp = arr[i];
             int j = i;
             for (; j > 0; j--) {

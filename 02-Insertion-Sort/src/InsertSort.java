@@ -5,6 +5,7 @@ import java.util.Arrays;
  * Created by liwei on 17/5/10.
  */
 public class InsertSort implements ISortAlgorithm {
+
     @Override
     public String getName() {
         return "insert sort";
@@ -44,11 +45,9 @@ public class InsertSort implements ISortAlgorithm {
         arr[index2] = temp;
     }
 
-
     public static void main(String[] args) {
         int[] randomArray = SortTestHelper.generateRandomArray(5000, 100, 500);
         SortTestHelper.testSortEfficiency(new InsertSort(), randomArray);
         SortTestHelper.testSorted(randomArray);
     }
-
 }

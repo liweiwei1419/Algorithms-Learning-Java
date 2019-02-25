@@ -10,9 +10,13 @@ import java.util.Stack;
  */
 public class BST {
 
-    // 使用内部类来表示节点
+    /**
+     * 使用内部类来表示节点
+     */
     private class Node {
-        // 为了说明算法，我们将 key 和 value 设置成易于比较的 int 类型，设计成实现了 Comparable 接口的对象是更标准的做法
+        /**
+         * 为了说明算法，我们将 key 和 value 设置成易于比较的 int 类型，设计成实现了 Comparable 接口的对象是更标准的做法
+         */
         private int key;
         private int value;
         private Node left;
@@ -33,24 +37,38 @@ public class BST {
         }
     }
 
-    // 根结点
+    /**
+     * 根结点
+     */
     private Node root;
 
-    // 二分搜索树中的节点个数
+    /**
+     * 二分搜索树中的结点个数
+     */
     private int count;
 
-    // 默认构造一棵空的二分搜索树
+    /**
+     * 默认构造一棵空的二分搜索树
+     */
     public BST() {
         root = null;
         count = 0;
     }
 
-    // 返回二分搜索树的节点个数
+
+    /**
+     * 返回二分搜索树的节点个数
+     * @return
+     */
     public int size() {
         return count;
     }
 
-    // 返回二分搜索树是否为空
+
+    /**
+     * 返回二分搜索树是否为空
+     * @return
+     */
     public boolean isEmpty() {
         return count == 0;
     }
@@ -101,6 +119,7 @@ public class BST {
         return contain(root, key);
     }
 
+
     private boolean contain(Node node, int key) {
         // 首先我们要处理递归到底的情况
         if (node == null) {
@@ -119,6 +138,7 @@ public class BST {
     public int search(int key) {
         return search(root, key);
     }
+
 
     /**
      * 在以 node 为根的二叉搜索树中查找 key 所对应的 value
@@ -142,10 +162,13 @@ public class BST {
     }
 
 
-    // 二分搜索树的前序遍历
+    /**
+     * 二分搜索树的前序遍历
+     */
     public void preOrder() {
         preOrder(root);
     }
+
 
     private void preOrder(Node node) {
         if (node != null) {
@@ -201,10 +224,13 @@ public class BST {
     }
 
 
-    // 二分搜索树的中序遍历
+    /**
+     * 二分搜索树的中序遍历
+     */
     public void inOrder() {
         inOrder(root);
     }
+
 
     private void inOrder(Node node) {
         if (node != null) {
@@ -287,12 +313,17 @@ public class BST {
         }
     }
 
-    // 查找二分搜索树 key 的最小值
+
+    /**
+     * 查找二分搜索树 key 的最小值
+     * @return
+     */
     public int minimum() {
         assert count != 0;
         Node node = minimum(root);
         return node.key;
     }
+
 
     private Node minimum(Node node) {
         if (node.left == null) {
@@ -302,12 +333,16 @@ public class BST {
     }
 
 
-    // 查找二分搜索树 key 的最大值
+    /**
+     * 查找二分搜索树 key 的最大值
+     * @return
+     */
     public int maximum() {
         assert count != 0;
         Node node = maximum(root);
         return node.key;
     }
+
 
     private Node maximum(Node node) {
         if (node.right == null) {
@@ -424,7 +459,12 @@ public class BST {
         }
     }
 
-    // 返回以 node 为根的二分搜索树中，小于等于 key 的最大值
+    /**
+     * 返回以 node 为根的二分搜索树中，小于等于 key 的最大值
+     * @param node
+     * @param key
+     * @return
+     */
     private Integer floor(Node node, int key) {
         if (node == null) {
             return null;
@@ -442,7 +482,12 @@ public class BST {
         return node.value;
     }
 
-    // 返回以 node 为根的二分搜索树中，小于等于 key 的最大值
+    /**
+     * 返回以 node 为根的二分搜索树中，小于等于 key 的最大值
+     * @param node
+     * @param key
+     * @return
+     */
     private Integer ceiling(Node node, int key) {
         if (node == null) {
             return null;
@@ -461,9 +506,10 @@ public class BST {
     }
 
 
-    // TODO: 18/4/25 二分搜索树的前序、中序、后序遍历实现
+    // 二分搜索树的前序、中序、后序遍历实现
     // 参考资料：http://www.cnblogs.com/hapjin/p/5679482.html
     // 参考资料：邓俊辉老师的算法课程
+
     public static void main(String[] args) {
         BST bst = new BST();
         bst.insert(28, 28);

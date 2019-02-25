@@ -31,10 +31,10 @@ public class MergeSort implements ISortAlgorithm {
     // [0,1,2,3]
     // [left, mid] 有序
     // [mid + 1, right] 有序
+
     private void mergeOfTwoArray(int[] arr, int left, int mid, int right) {
-        // 待优化的地方
+        // 每做一次合并，都 new 数组元素，这样不好，在后面的版本中，会改进这个问题
         int[] temp = new int[right - left + 1];
-        // 编辑器提示可以优化
         for (int i = 0; i < right - left + 1; i++) {
             temp[i] = arr[left + i];
         }

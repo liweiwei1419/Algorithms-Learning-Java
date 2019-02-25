@@ -1,6 +1,7 @@
 // 在堆的有关操作中，需要比较堆中元素的大小，所以 Item 需要 extends Comparable
 // 刚开始写的时候可能不太习惯，多写几次就好了
 // 不要犯懒，堆的操作其实并不复杂，一定要动手多写，达到白板编程都能熟练写出来的状态
+// Created by liwei on 17/6/16.
 public class MinHeap<Item extends Comparable> {
     private Item[] data;
     private int count;
@@ -8,6 +9,7 @@ public class MinHeap<Item extends Comparable> {
 
     // 构造函数, 构造一个空堆, 可容纳 capacity 个元素
     public MinHeap(int capacity) {
+        // 因为这个最小索引堆是自己使用，所以我们将最小堆的内部的数组的记录从索引 1 开始
         // 注意这种写法，不要 new Object，编译不能通过
         data = (Item[]) new Comparable[capacity + 1];
         this.capacity = capacity;
@@ -28,25 +30,41 @@ public class MinHeap<Item extends Comparable> {
         }
     }
 
-    // 返回堆中的元素个数
+    /**
+     * 返回堆中的元素个数
+     *
+     * @return
+     */
     public int size() {
         return count;
     }
 
-    // 返回堆中是否为空
+    /**
+     * 返回堆中是否为空
+     *
+     * @return
+     */
     public boolean isEmpty() {
         return count == 0;
     }
 
-    // 向最小堆中插入一个新的元素 item
+    /**
+     * 向最小堆中插入一个新的元素 item
+     *
+     * @param item
+     */
     public void insert(Item item) {
-        assert count < capacity;
+        assert count + 1 <= capacity;
         count++;
         data[count] = item;
         shiftUp(count);
     }
 
-    // 从最小堆中取出堆顶元素, 即堆中所存储的最小数据
+    /**
+     * 从最小堆中取出堆顶元素, 即堆中所存储的最小数据
+     *
+     * @return
+     */
     public Item extractMin() {
         assert count > 0;
         Item min = data[1];
@@ -74,9 +92,11 @@ public class MinHeap<Item extends Comparable> {
         while (2 * k <= count) {// 只要有左孩子，就应该考虑是否可以 shiftDown
             int t = 2 * k;
             if (t + 1 < count && data[t].compareTo(data[t + 1]) > 0) {
+                // 有右边的孩子，并且右边的孩子还要比左边的孩子小
+                // 我们才取右边的孩子
                 t++;
             }
-            if (data[t].compareTo(data[k]) > 0) {
+            if (data[t].compareTo(data[k]) >= 0) {
                 // 两个孩子中最小的那个元素都比父亲大，就满足最小堆的性质，循环退出
                 break;
             }

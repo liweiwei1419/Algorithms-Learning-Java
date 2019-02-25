@@ -1,15 +1,14 @@
-
 /**
  * 插入排序的一个特点是：循环有终止的时候
  * Created by liwei on 17/5/10.
  */
 public class InsertSortOptimize1_1 implements ISortAlgorithm {
+
     @Override
     public String getName() {
         return "insert sort 的优化";
     }
 
-    // [5,7,8]
     @Override
     public void sort(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
@@ -21,5 +20,4 @@ public class InsertSortOptimize1_1 implements ISortAlgorithm {
             arr[j] = temp;
         }
     }
-
 }

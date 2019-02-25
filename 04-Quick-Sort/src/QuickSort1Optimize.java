@@ -39,7 +39,7 @@ public class QuickSort1Optimize {
     }
 
     private void insertSort(int[] arr, int left, int right) {
-        for (int i = left + 1; i <= right; i++) { // 第 1 遍不用插入，所以是总长度减去 1
+        for (int i = left + 1; i <= right; i++) {
             int temp = arr[i];
             int j;
             for (j = i - 1; j >= left; j--) {

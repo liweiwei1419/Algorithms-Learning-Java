@@ -5,6 +5,7 @@
  * 2、然后递归调用
  */
 public class QuickSort1 implements ISortAlgorithm {
+
     @Override
     public String getName() {
         return "快速排序";
@@ -66,5 +67,4 @@ public class QuickSort1 implements ISortAlgorithm {
         arr[index1] = arr[index2];
         arr[index2] = temp;
     }
-
 }

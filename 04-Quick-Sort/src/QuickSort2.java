@@ -17,6 +17,7 @@ public class QuickSort2 {
     // 3, 1, 6, 2, 4, 8, 5, 7
     // 3, 1, 2, 6, 4, 8, 5, 7
     // 2, 1, 3, 6, 4, 8, 5, 7
+
     public int partition(int[] arr, int left, int right) {
         // [3,4,5]
         int randonIndex = left + random.nextInt(right - left + 1);

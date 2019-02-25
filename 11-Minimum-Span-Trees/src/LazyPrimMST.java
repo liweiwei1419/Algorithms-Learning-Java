@@ -1,15 +1,33 @@
 import java.util.ArrayList;
 import java.util.List;
 
-// LazyPrim ：懒惰的 Prim 实现，Prim（普里姆）
-// MST：Minimum Spanning Tree，最小生成树
+/**
+ * LazyPrim ：懒惰的 Prim 实现，Prim（普里姆）
+ * MST：Minimum Spanning Tree，最小生成树
+ * 使用 lazy 的 Prim 算法求得最小生成树
+ * Created by liwei on 17/6/16.
+ */
 public class LazyPrimMST<Weight extends Number & Comparable> {
-
-    private WeightGraph<Weight> G;// 图的引用
-    private MinHeap<Edge<Weight>> pq;// 最小堆
-    private boolean[] marked; // 标记数组，在算法运行过程中标记节点 i 是否被访问
-    private List<Edge<Weight>> mst; // 最小生成树所包含的所有边
-    private Number mstWeight;//最小生成树的权值
+    /**
+     * 带权图的引用
+     */
+    private WeightGraph<Weight> G;
+    /**
+     * pq 是优先（priority）队列（queue）的意思，最小堆
+     */
+    private MinHeap<Edge<Weight>> pq;
+    /**
+     * 标记数组，在算法运行过程中标记节点 i 是否被访问
+     */
+    private boolean[] marked;
+    /**
+     * 最小生成树包含的所有的边
+     */
+    private List<Edge<Weight>> mst;
+    /**
+     * 最小生成树的权值
+     */
+    private Number mstWeight;
 
     // 在构造方法中完成最小生成树的计算
     public LazyPrimMST(WeightGraph<Weight> graph) {

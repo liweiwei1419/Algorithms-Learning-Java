@@ -1,7 +1,11 @@
 import java.io.*;
 import java.util.Scanner;
 
-// 通过文件读取带权图的信息
+/**
+ * 通过文件读取带权图的信息
+ * 读取带权图的工具类
+ * Created by liwei on 17/6/15.
+ */
 public class ReadWeightedGraphUtil {
 
     private Scanner scanner;

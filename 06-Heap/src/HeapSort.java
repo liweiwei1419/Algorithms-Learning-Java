@@ -1,8 +1,10 @@
 public class HeapSort implements ISortAlgorithm {
+
     @Override
     public String getName() {
         return "堆排序（原地堆排序）";
     }
+
 
     @Override
     public void sort(int[] arr) {
@@ -20,6 +22,7 @@ public class HeapSort implements ISortAlgorithm {
         }
     }
 
+
     private void swap(int[] arr, int index1, int index2) {
         if (index1 == index2) {
             return;
@@ -28,6 +31,7 @@ public class HeapSort implements ISortAlgorithm {
         arr[index1] = arr[index2];
         arr[index2] = temp;
     }
+
 
     /**
      * @param arr

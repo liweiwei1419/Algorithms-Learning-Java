@@ -3,10 +3,12 @@
  * Created by liwei on 17/5/15.
  */
 public class HeapSort1 implements ISortAlgorithm {
+
     @Override
     public String getName() {
         return "第 1 个版本的堆排序算法，逐个全部入队，再逐个出队";
     }
+
 
     @Override
     public void sort(int[] arr) {
@@ -19,6 +21,7 @@ public class HeapSort1 implements ISortAlgorithm {
             arr[i] = maxHeap.extractMax();
         }
     }
+
 
     /**
      * 把数组中的元素先全部挨个 insert 到最大堆中
@@ -37,5 +40,4 @@ public class HeapSort1 implements ISortAlgorithm {
             nums[maxHeap.getSize() - 1] = maxHeap.extractMax();
         }
     }
-
 }

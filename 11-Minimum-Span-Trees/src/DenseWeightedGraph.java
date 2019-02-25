@@ -1,13 +1,27 @@
 import java.util.ArrayList;
 import java.util.List;
 
-// 带权图的稠密图实现
+/**
+ * 使用邻接矩阵
+ * 稠密图的带权图表示，
+ * Created by liwei on 17/6/16.
+ */
 public class DenseWeightedGraph<Weight extends Number & Comparable> implements WeightGraph {
 
-    private int n;// 节点数
-    private int m;// 边数
-    private boolean directed; // 是否是有向图
-    private Edge<Weight>[][] g;// 图的具体数据，有边就有了节点信息，就能表示图
+    /**
+     * 顶点个数
+     */
+    private int n;
+    /**
+     * 边的条数
+     */
+    private int m;
+    /**
+     * 是否是有向
+     */
+    private boolean directed;
+    // 图的具体数据，有边就有了结点信息，就能表示图
+    private Edge<Weight>[][] g;
 
     public DenseWeightedGraph(int n, boolean directed) {
         assert n > 0;
@@ -44,7 +58,7 @@ public class DenseWeightedGraph<Weight extends Number & Comparable> implements W
             return;
         }
         g[edge.v()][edge.w()] = new Edge(edge);
-        if (!directed) { // edge.v()!=edge.w() &&
+        if (edge.v()!=edge.w() && !directed) { //
             // 如果是无向图，反着还要添加一下
             g[edge.w()][edge.v()] = new Edge(edge);
         }
@@ -79,7 +93,7 @@ public class DenseWeightedGraph<Weight extends Number & Comparable> implements W
         List<Edge<Weight>> adjV = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             if (g[v][i] != null) {
-                adjV.add(g[v][i]);
+                adjV.add(new Edge<W>(g[v][i]));
             }
         }
         return adjV;

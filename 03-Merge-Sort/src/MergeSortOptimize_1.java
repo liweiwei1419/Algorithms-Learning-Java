@@ -4,6 +4,9 @@
  */
 public class MergeSortOptimize_1 implements ISortAlgorithm {
 
+    /**
+     * 全局使用一个数组帮助归并
+     */
     private int[] buff;
 
     @Override

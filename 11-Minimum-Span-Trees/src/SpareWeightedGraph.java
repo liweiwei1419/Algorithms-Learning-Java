@@ -1,12 +1,30 @@
 import java.util.ArrayList;
 import java.util.List;
 
-// 带权图的稀疏图实现
+
+/**
+ * 带权图的稀疏图实现
+ * Created by liwei on 17/6/15.
+ * @param <Weight>
+ */
 public class SpareWeightedGraph<Weight extends Number & Comparable> implements WeightGraph {
 
-    private int n;// 节点数
-    private int m;// 边数
-    private boolean directed; // 是否为有向图
+    /**
+     * 顶点数
+     */
+    private int n;
+    /**
+     * 邻边数
+     */
+    private int m;
+    /**
+     * 是否是有向图
+     */
+    private boolean directed;
+
+    /**
+     * 图的具体数据
+     */
     private List<Edge<Weight>>[] g;
 
     public SpareWeightedGraph(int n, boolean directed) {
@@ -20,16 +38,34 @@ public class SpareWeightedGraph<Weight extends Number & Comparable> implements W
         }
     }
 
+    /**
+     * 返回结点的个数
+     *
+     * @return
+     */
     @Override
     public int V() {
         return n;
     }
 
+    /**
+     * 返回边的条数
+     *
+     * @return
+     */
     @Override
     public int E() {
         return m;
     }
 
+    /**
+     * 这个方法要留意
+     * 这个方法要留意
+     * 这个方法要留意
+     * 向图中添加一条边的对象
+     *
+     * @param e
+     */
     @Override
     public void addEdge(Edge edge) {
         assert edge.v() >= 0 && edge.v() < n;
@@ -37,6 +73,10 @@ public class SpareWeightedGraph<Weight extends Number & Comparable> implements W
         // 在使用邻接表表示带权图的时候，如果检查是否有重复边，要遍历整个链表
         // 为此我们这里允许重复边，即 hasEdge 就不做了
         g[edge.v()].add(new Edge(edge));
+
+        // 我们不允许自环边
+        // 但是我们允许平行边
+        // 允许平行边的原因：查找平行边的时间复杂度可观 O(n)
         if (!directed) {// edge.v()!=edge.w()
             // 注意：这里我们都让这个数组的所有的边的 w 等于索引到这个数组的 w 值
             // 这就是下面这一行代码为什么要先写 edge.w() 再写 edge.v() 的原因
@@ -46,6 +86,13 @@ public class SpareWeightedGraph<Weight extends Number & Comparable> implements W
         m++;
     }
 
+    /**
+     * 这里应用了 other 这个函数帮助我们判断 v 和 w 之间是否有连线
+     *
+     * @param v
+     * @param w
+     * @return
+     */
     @Override
     public boolean hasEdge(int v, int w) {
         assert v >= 0 && v < n;

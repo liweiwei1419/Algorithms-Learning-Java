@@ -34,7 +34,6 @@ public class QuickSort3_1 {
         swap(arr, left, lt);
         quickSort3Ways(arr, left, lt - 1);
         quickSort3Ways(arr, gt, right);
-
     }
 
     private void swap(int[] arr, int index1, int index2) {
@@ -50,6 +49,7 @@ public class QuickSort3_1 {
     public void sort(int[] nums) {
         quickSort3Ways(nums, 0, nums.length - 1);
     }
+
 
     public static void main(String[] args) {
         int[] nums = {6, 4, 3, 7, 1, 5, 2, 8, 9, 10};

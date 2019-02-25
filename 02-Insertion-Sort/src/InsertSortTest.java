@@ -2,7 +2,6 @@ import java.util.Arrays;
 
 
 public class InsertSortTest {
-
     /**
      * 逐个交换到指定位置
      *

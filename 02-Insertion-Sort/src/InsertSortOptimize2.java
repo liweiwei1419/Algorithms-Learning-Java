@@ -1,9 +1,9 @@
-
 /**
  * 插入排序的一个特点是：循环有终止的时候
  * Created by liwei on 17/5/10.
  */
 public class InsertSortOptimize2 implements ISortAlgorithm {
+
     @Override
     public String getName() {
         return "insert sort";

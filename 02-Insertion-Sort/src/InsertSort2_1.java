@@ -8,6 +8,7 @@ public class InsertSort2_1 {
         for (int i = 1; i < len; i++) {
             int temp = arr[i];
             int j = i - 1;
+            // 逐个后移
             while (j >= 0 && arr[j] > temp) {
                 arr[j + 1] = arr[j];
                 j--;

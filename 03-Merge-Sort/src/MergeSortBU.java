@@ -41,7 +41,7 @@ public class MergeSortBU implements ISortAlgorithm {
         }
 
         int len = right - left + 1;
-        // 每一次合并都 new 开销大
+        // 每一次合并都 new 开销大，应该全局只使用一个数组帮助归并
         int[] temp = new int[len];
         for (int i = 0; i < len; i++) {
             temp[i] = arr[left + i];

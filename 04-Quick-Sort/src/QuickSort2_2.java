@@ -7,16 +7,19 @@ import java.util.Arrays;
  * Created by liwei on 17/5/11.
  */
 public class QuickSort2_2 implements ISortAlgorithm {
+
     @Override
     public String getName() {
         return "快速排序的实现2";
     }
+
 
     @Override
     public void sort(int[] arr) {
         int len = arr.length;
         quickSort(arr, 0, len - 1);
     }
+
 
     private void quickSort(int[] arr, int left, int right) {
         if (left >= right) {
@@ -26,6 +29,7 @@ public class QuickSort2_2 implements ISortAlgorithm {
         quickSort(arr, left, p - 1);
         quickSort(arr, p + 1, right);
     }
+
 
     /**
      * 这个定义非常重要，直接影响我们的算法初始值定义
@@ -59,6 +63,7 @@ public class QuickSort2_2 implements ISortAlgorithm {
         swap(arr, left, j);
         return j;
     }
+
 
     private void swap(int[] arr, int index1, int index2) {
         if (index1 == index2) {

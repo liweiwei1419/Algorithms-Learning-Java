@@ -1,6 +1,5 @@
 import java.util.Arrays;
 
-
 /**
  * 选择排序
  * Created by liwei on 17/5/10.
@@ -22,7 +21,8 @@ public class SelectSort {
             }
             swap(arr, i, minIndex);
         }
-        System.out.println(Arrays.toString(arr));
+        // 调试代码
+        // System.out.println(Arrays.toString(arr));
     }
 
     private static void swap(int[] arr, int i, int minIndex) {
@@ -34,6 +34,4 @@ public class SelectSort {
         arr[i] = arr[minIndex];
         arr[minIndex] = temp;
     }
-
-
 }

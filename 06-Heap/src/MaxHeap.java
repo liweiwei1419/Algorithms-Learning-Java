@@ -32,6 +32,7 @@ public class MaxHeap {
         this.capacity = capacity;
     }
 
+
     /**
      * 传递一个数组，形成一个最大堆，这一步操作叫 heapify
      * 从 index/2 这个元素开始，到 root 即 index = 1 的节点，依次进行 shift down 就可以构建成最大堆了
@@ -53,16 +54,23 @@ public class MaxHeap {
     }
 
 
-    // 返回堆中的元素个数
+    /**
+     * 返回堆中的元素个数
+     * @return
+     */
     public int getSize() {
         return count;
     }
 
-    // 返回一个布尔值，返回堆中是否为空
+
+    /**
+     * 返回一个布尔值，表示堆中元素是否为空
+     * @return
+     */
     public boolean isEmpty() {
-        // 返回一个布尔值, 表示堆中是否为空
         return count == 0;
     }
+
 
     /**
      * 在堆的尾部增加一个元素，将这个元素执行 shift up 操作，保持最大堆的性质
@@ -95,8 +103,8 @@ public class MaxHeap {
         data[k] = temp;
     }
 
+
     /**
-     * //TODO:17/6/9 还可以优化，把多次的交换工作编程多次的赋值
      * 对索引是 h 的元素执行 shiftUp 操作
      *
      * @param h
@@ -127,6 +135,7 @@ public class MaxHeap {
             k /= 2;
         }
     }
+
 
     /**
      * 把指定索引（记住：这里的索引从 1 开始）的元素与父节点进行比较，如果父节点大，就要进行交换
@@ -168,6 +177,7 @@ public class MaxHeap {
         return ret;
     }
 
+
     /**
      * 把在索引 k 这个位置元素逐渐下移
      *
@@ -193,6 +203,7 @@ public class MaxHeap {
         }
         data[k] = temp;
     }
+
 
     /**
      * 把在索引 k 这个位置元素逐渐下落
@@ -228,6 +239,7 @@ public class MaxHeap {
         }
         System.out.println();
     }
+
 
     /**
      * 显示最大堆中的数据
@@ -282,6 +294,4 @@ public class MaxHeap {
             nums[count - 1] = extractMax();
         }
     }
-
-
 }

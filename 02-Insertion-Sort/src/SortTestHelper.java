@@ -28,7 +28,12 @@ public class SortTestHelper {
     }
 
 
-    // 测试排序的效率
+    /**
+     * 测试排序的效率
+     *
+     * @param sortAlgorithm
+     * @param arr
+     */
     public static void testSortEfficiency(ISortAlgorithm sortAlgorithm, int[] arr) {
         System.out.println("您所使用的排序算法是 => " + sortAlgorithm.getName());
         // SortTestHelper.printArray(arr);
@@ -41,6 +46,7 @@ public class SortTestHelper {
         // SortTestHelper.printArray(arr);
         System.out.println("排序算法耗时 => " + spendBigDecimal + " 秒");
     }
+
 
     /**
      * 复制数组
@@ -72,6 +78,7 @@ public class SortTestHelper {
         System.out.println("给定数组按照升序排序！");
     }
 
+
     /**
      * 打印数组
      *
@@ -83,6 +90,7 @@ public class SortTestHelper {
         }
         System.out.println();
     }
+
 
     /**
      * 判断两个数组是否相等
@@ -107,7 +115,6 @@ public class SortTestHelper {
      * 生成近乎有序的数组
      */
     /**
-     *
      * @param num
      * @param begin
      * @param swaptime
@@ -125,6 +132,7 @@ public class SortTestHelper {
         return arr;
     }
 
+
     public static void swap(int[] arr, int index1, int index2) {
         if (index1 == index2) {
             return;
@@ -133,5 +141,4 @@ public class SortTestHelper {
         arr[index1] = arr[index2];
         arr[index2] = temp;
     }
-
 }

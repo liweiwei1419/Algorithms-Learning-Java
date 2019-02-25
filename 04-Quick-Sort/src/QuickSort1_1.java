@@ -13,6 +13,7 @@ public class QuickSort1_1 {
     // 3, 2, 6, 4, 1, 8, 5, 7
     // 3, 2, 1, 4, 6, 8, 5, 7
     // 1, 2, 3, 4, 6, 8, 5, 7
+
     private int partition(int[] arr, int left, int right) {
         // 待优化 1 ：随机选择一个点作为标定点
         int p = arr[left];
