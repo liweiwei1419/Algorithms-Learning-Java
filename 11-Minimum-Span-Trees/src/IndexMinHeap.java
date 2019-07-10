@@ -1,10 +1,26 @@
-// 最小索引堆（由最小堆的代码修改而来）
+/**
+ * 最小索引堆（由最小堆的代码修改而来）
+ *
+ * @param <Item>
+ */
 public class IndexMinHeap<Item extends Comparable> {
-    private Item[] data; // 最小索引堆的数据
-    private int[] indexes; // 最小索引堆中的索引，data[indexes[0]] ,data[indexes[1]],..., 构成最小堆
-    private int[] reverse; // 最小索引堆中的反向查找索引
+    /**
+     * 最小索引堆的数据
+     */
+    private Item[] data;
+
+    /**
+     * 最小索引堆中的索引，data[indexes[0]] ,data[indexes[1]],..., 构成最小堆
+     */
+    private int[] indexes;
+
+    /**
+     * 最小索引堆中的反向查找索引
+     */
+    private int[] reverse;
     private int count;
     private int capacity;
+
 
     public IndexMinHeap(int capacity) {
         data = (Item[]) new Comparable[capacity + 1];
@@ -19,16 +35,24 @@ public class IndexMinHeap<Item extends Comparable> {
         this.count = 0;
     }
 
+
     public int size() {
         return count;
     }
+
 
     public boolean isEmpty() {
         return count == 0;
     }
 
-    // 向最小索引堆中插入一个新的元素, 新元素的索引为 i , 元素为 item
-    // 传入的 i 对外部调用者而言的，是从 0 开始的
+
+    /**
+     * 向最小索引堆中插入一个新的元素, 新元素的索引为 i , 元素为 item
+     * 传入的 i 对外部调用者而言的，是从 0 开始的
+     *
+     * @param i
+     * @param item
+     */
     public void insert(int i, Item item) {
         assert count < capacity;
         assert i >= 0 && i < capacity;
@@ -38,28 +62,43 @@ public class IndexMinHeap<Item extends Comparable> {
         i += 1;
         data[i] = item;
 
-        indexes[count + 1] = i; // 有对 indexes 赋值的地方，就一定要同步对 reverse 赋值
+        // 有对 indexes 赋值的地方，就一定要同步对 reverse 赋值
+        indexes[count + 1] = i;
         reverse[i] = count + 1;
 
         count++;
         shiftUp(count);
     }
 
-    // 看索引 i 所在的位置是否存在元素
+    /**
+     * 看索引 i 所在的位置是否存在元素
+     *
+     * @param i
+     * @return
+     */
     public boolean contain(int i) {
         assert i >= 0 && i < capacity;
         // 不为 0 表示外部调用者眼中的 i 位置不存在元素
         return reverse[i + 1] != 0;
     }
 
-    // 获取最小索引堆中索引为i的元素
+    /**
+     * 获取最小索引堆中索引为 i 的元素
+     *
+     * @param i
+     * @return
+     */
     public Item getItem(int i) {
         assert contain(i);
         return data[i + 1];
     }
 
 
-    // 从最小堆中取出堆顶元素, 即堆中所存储的最小数据
+    /**
+     * 从最小堆中取出堆顶元素, 即堆中所存储的最小数据
+     *
+     * @return
+     */
     public Item extractMin() {
         assert count > 0;
         Item min = data[indexes[1]];
@@ -69,27 +108,39 @@ public class IndexMinHeap<Item extends Comparable> {
         return min;
     }
 
-    // 从最小索引堆中取出堆顶元素的索引
-    public int extractMinIndex(){
+
+    /**
+     * 从最小索引堆中取出堆顶元素的索引
+     *
+     * @return
+     */
+    public int extractMinIndex() {
         assert count > 0;
         int ret = indexes[1] - 1;
-        swapIndexes( 1 , count );
+        swapIndexes(1, count);
         reverse[indexes[count]] = 0;
-        count --;
+        count--;
         shiftDown(1);
         return ret;
     }
 
-    // 获取最小堆中的堆顶元素
+
+    /**
+     * 获取最小堆中的堆顶元素
+     *
+     * @return
+     */
     public Item getMin() {
         assert (count > 0);
         return data[indexes[1]];
     }
 
+
     public int getMinIndex() {
         assert count > 0;
         return indexes[1] - 1;
     }
+
 
     public void change(int i, Item newItem) {
         assert contain(i);
@@ -103,9 +154,15 @@ public class IndexMinHeap<Item extends Comparable> {
         shiftDown(reverse[i]);
     }
 
-    // 交换索引堆中的索引 i 和 j
-    // 由于有了反向索引 reverse 数组，
-    // indexes 数组发生改变以后， 相应的就需要维护 reverse 数组
+
+    /**
+     * 交换索引堆中的索引 i 和 j
+     * 由于有了反向索引 reverse 数组，
+     * indexes 数组发生改变以后， 相应的就需要维护 reverse 数组
+     *
+     * @param i
+     * @param j
+     */
     private void swapIndexes(int i, int j) {
         int t = indexes[i];
         indexes[i] = indexes[j];
@@ -115,6 +172,7 @@ public class IndexMinHeap<Item extends Comparable> {
         reverse[indexes[j]] = j;
     }
 
+
     private void shiftUp(int k) {
         while (k > 1 && data[indexes[k / 2]].compareTo(data[indexes[k]]) > 0) {
             swapIndexes(k / 2, k);
@@ -122,8 +180,10 @@ public class IndexMinHeap<Item extends Comparable> {
         }
     }
 
+
     private void shiftDown(int k) {
-        while (2 * k <= count) {// 只要有左孩子，就应该考虑是否可以 shiftDown
+        // 只要有左孩子，就应该考虑是否可以 shiftDown
+        while (2 * k <= count) {
             int t = 2 * k;
             if (t + 1 < count && data[indexes[t]].compareTo(data[indexes[t + 1]]) > 0) {
                 t++;
@@ -136,6 +196,7 @@ public class IndexMinHeap<Item extends Comparable> {
             k = t;
         }
     }
+
 
     public static void main(String[] args) {
         int N = 1000000;

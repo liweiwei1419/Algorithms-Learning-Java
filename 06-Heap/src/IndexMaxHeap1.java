@@ -213,6 +213,32 @@ public class IndexMaxHeap1<T extends Comparable> {
         return true;
     }
 
+    /**
+     * 为 LeetCode 第 239 题新增的方法，
+     * 看一眼此时索引堆的最大索引是多少（没用上，我想多了，留到以后用吧）
+     *
+     * @return
+     */
+    public int peekMaxIndex() {
+        if (this.count == 0) {
+            throw new RuntimeException("堆里没有可以取出的元素");
+        }
+        // 注意：与用户认为的索引值有一个偏差
+        return indexes[1] - 1;
+    }
+
+    /**
+     * 为 LeetCode 第 239 题新增的方法，
+     * 看一眼此时索引堆的最大索引是多少（没用上，我想多了，留到以后用吧）
+     *
+     * @return
+     */
+    public int peekMaxValue() {
+        if (this.count == 0) {
+            throw new RuntimeException("堆里没有可以取出的元素");
+        }
+        return data[indexes[1]];
+    }
 
     public void showIndexes() {
         System.out.printf("最大索引堆中的数据结构");

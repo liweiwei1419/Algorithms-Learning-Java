@@ -3,7 +3,7 @@ import java.util.List;
 public class LazyPrimMSTTest {
 
     public static void main(String[] args) {
-        String filename = "testG1.txt";
+        String filename = "11-Minimum-Span-Trees/testG1.txt";
         int v = 8;
         // 无权图
         SpareWeightedGraph<Double> g = new SpareWeightedGraph<>(v, false);

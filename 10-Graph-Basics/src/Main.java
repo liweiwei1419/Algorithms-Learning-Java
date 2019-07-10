@@ -9,7 +9,7 @@ public class Main {
 
         // 稀疏图
         SparseGraph graph = new SparseGraph(13, false);
-        new ReadGraphUtil(graph, "testG1.txt");
+        new ReadGraphUtil(graph, "11-Minimum-Span-Trees/testG1.txt");
         // graph.show();
 
         Component component = new Component(graph);

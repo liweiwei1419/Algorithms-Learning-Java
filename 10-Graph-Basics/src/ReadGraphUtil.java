@@ -30,12 +30,12 @@ public class ReadGraphUtil {
         // 表示无向图
         boolean isDirected = false;
         SparseGraph sparseGraph1 = new SparseGraph(13, isDirected);
-        new ReadGraphUtil(sparseGraph1, "testG1.txt");
+        new ReadGraphUtil(sparseGraph1, "11-Minimum-Span-Trees/testG1.txt");
         sparseGraph1.show();
 
         // 测试 2 ：将图文件读到一个图稠密对象中
         DenseGraph denseGraph1 = new DenseGraph(13, isDirected);
-        new ReadGraphUtil(denseGraph1, "testG1.txt");
+        new ReadGraphUtil(denseGraph1, "11-Minimum-Span-Trees/testG1.txt");
         denseGraph1.show();
     }
 }

@@ -1,13 +1,19 @@
 import java.util.ArrayList;
 import java.util.List;
 
-// Kruskal（克鲁斯卡尔）算法
+/**
+ * Kruskal（克鲁斯卡尔）算法
+ * @param <Weight>
+ */
 public class KruskalMST<Weight extends Number & Comparable> {
 
     private List<Edge<Weight>> mst;
     private Number mstWeight;
 
-    // 使用 Kruskal 算法计算带权图的最小生成树
+    /**
+     * 使用 Kruskal 算法计算带权图的最小生成树
+     * @param graph
+     */
     public KruskalMST(WeightGraph<Weight> graph) {
 
         mst = new ArrayList<>();
@@ -29,7 +35,8 @@ public class KruskalMST<Weight extends Number & Comparable> {
         // 为了判断顶点是否相连接，所以应该开辟顶点数规模的并查集
         UnionFind uf = new UnionFind(graph.V());
 
-        while (!pq.isEmpty() && mst.size() < graph.V()-1){// 凑够数了，就不必进行下去了
+        // 如果已经找到了 v - 1 条边，就不必进行下去了
+        while (!pq.isEmpty() && mst.size() < graph.V()-1){
 
             // 从最小堆中拿出当前未考虑到的最小权重的边
             Edge<Weight> e = pq.extractMin();
@@ -43,6 +50,7 @@ public class KruskalMST<Weight extends Number & Comparable> {
             mst.add(e);
             uf.union(e.v(),e.w());
         }
+        
         this.mstWeight = mst.get(0).weight();
         for (int i = 1; i < mst.size(); i++) {
             this.mstWeight = this.mstWeight.doubleValue() + mst.get(i).weight().doubleValue();
@@ -56,5 +64,4 @@ public class KruskalMST<Weight extends Number & Comparable> {
     public Number result() {
         return mstWeight;
     }
-
 }

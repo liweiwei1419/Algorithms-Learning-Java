@@ -5,14 +5,18 @@
  */
 public class Edge<Weight extends Number & Comparable> implements Comparable<Edge> {
 
-    // 边的两个顶点的编号（编号是只是为了区分，没有大小关系，即没有比较的含义）
+    /**
+     * 边的两个顶点的编号（编号是只是为了区分，没有大小关系，即没有比较的含义）
+     */
     private int a;
+
     private int b;
 
     /**
      * 边的权值
      */
     private Weight weight;
+
 
     /**
      * 根据一条边的两个顶点和边的权值
@@ -27,6 +31,7 @@ public class Edge<Weight extends Number & Comparable> implements Comparable<Edge
         this.weight = weight;
     }
 
+
     /**
      * 根据边的对象复制一个边的对象
      * @param edge
@@ -37,6 +42,7 @@ public class Edge<Weight extends Number & Comparable> implements Comparable<Edge
         this.weight = edge.weight;
     }
 
+
     /**
      * 返回第 1 个顶点
      *
@@ -45,6 +51,7 @@ public class Edge<Weight extends Number & Comparable> implements Comparable<Edge
     public int v() {
         return a;
     }
+
 
     /**
      * 返回第 2 个顶点
@@ -55,6 +62,7 @@ public class Edge<Weight extends Number & Comparable> implements Comparable<Edge
         return b;
     }
 
+
     /**
      * 返回权值
      *
@@ -63,6 +71,7 @@ public class Edge<Weight extends Number & Comparable> implements Comparable<Edge
     public Weight weight() {
         return weight;
     }
+
 
     /**
      * 给一个顶点，返回另一个顶点
@@ -75,11 +84,16 @@ public class Edge<Weight extends Number & Comparable> implements Comparable<Edge
         return x == a ? b : a;
     }
 
-    // 输出边的信息
+
+    /**
+     * 输出边的信息
+     * @return
+     */
     @Override
     public String toString() {
         return "" + a + "-" + b + ": " + weight;
     }
+
 
     /**
      * 边之间的比较

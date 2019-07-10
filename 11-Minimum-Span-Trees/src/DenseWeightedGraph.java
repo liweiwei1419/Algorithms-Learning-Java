@@ -86,14 +86,18 @@ public class DenseWeightedGraph<Weight extends Number & Comparable> implements W
         }
     }
 
-    // 返回图中一个顶点的所有邻边，由于 Java 使用引用机制，返回一个 Vector 不会带来额外开销,
+    /**
+     * 返回图中一个顶点的所有邻边，由于 Java 使用引用机制，返回一个 Vector 不会带来额外开销
+     * @param v
+     * @return
+     */
     @Override
     public Iterable<Edge<Weight>> adj(int v) {
         assert v >= 0 && v < n;
         List<Edge<Weight>> adjV = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             if (g[v][i] != null) {
-                adjV.add(new Edge<W>(g[v][i]));
+                adjV.add(new Edge<Weight>(g[v][i]));
             }
         }
         return adjV;

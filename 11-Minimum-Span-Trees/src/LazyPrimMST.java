@@ -34,19 +34,26 @@ public class LazyPrimMST<Weight extends Number & Comparable> {
 
         // 初始化一些成员变量和辅助的数据结构
         this.G = graph;
-        pq = new MinHeap(graph.E());// lazy prim 算法每次考虑的边的条数就是图的最多的边数
+        // lazy prim 算法每次考虑的边的条数就是图的最多的边数
+        pq = new MinHeap(graph.E());
         marked = new boolean[this.G.V()];
         mst = new ArrayList<>();
 
         // lazt prim
         visit(0);
-        while (!pq.isEmpty()) { // 每次都拿出考虑的边的最小值，看看它是不是横切边，这就是 lazy prim 称之为 lazy 的原因
+        // 每次都拿出考虑的边的最小值，看看它是不是横切边，这就是 lazy prim 称之为 lazy 的原因
+        while (!pq.isEmpty()) {
             // 使用最小堆找出已经访问的边中权值最小的边
             Edge<Weight> e = pq.extractMin();
-            // 如果这条边的两端都已经访问过了, 则扔掉这条边
+
+            // 取出来的边有可能不是横切边
+            // 如果这条边的两端在同一侧，则丢弃，再从当前的最小堆中拿出一条边
+            // 如果这条边的两端在同一侧，则丢弃，再从当前的最小堆中拿出一条边
+            // 如果这条边的两端在同一侧，则丢弃，再从当前的最小堆中拿出一条边
             if (marked[e.v()] == marked[e.w()]) {
                 continue;
             }
+
             // 否则，这条边就是最小生成树中的一条边
             mst.add(e);
             // 将这条边中还没有被访问过的那个顶点，执行和一开始一样的 visit 操作
@@ -64,10 +71,15 @@ public class LazyPrimMST<Weight extends Number & Comparable> {
         }
     }
 
-    // 访问一个顶点，只做一件事情，将和这个顶点直接相连的还未加入最小堆的边加入最小堆
+    /**
+     * 访问一个顶点，只做一件事情，将和这个顶点直接相连的还未加入最小堆的边加入最小堆
+     * @param v
+     */
     private void visit(int v) {
+        // 这个点应该是还没有被访问过的
         assert !marked[v];
         marked[v] = true;
+        // 遍历一下这个顶点的所有邻边
         for (Edge<Weight> e : this.G.adj(v)) {
             // 【注意】技巧在这里：只要是另一个端点还没有被标记过，那么就表示这条边还未加入到最小堆中
             if (!marked[e.other(v)]) {
